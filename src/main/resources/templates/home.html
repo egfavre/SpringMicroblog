@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Microblog</title>
+</head>
+<body>
+
+{{^username}}
+<form action="/login" method="post">
+    <input type="text" name="username" placeholder="enter name"/>
+    <button type="submit">Login</button>
+</form>
+{{/username}}
+
+{{#username}}
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+Hello, {{username}}
+<form action="/addMessage" method="post">
+    <input type="text" name="text" placeholder="enter message"/>
+    <button type="submit">Add Message</button>
+</form>
+<h1>Messages</h1>
+{{#messages}}
+<ol>
+<li>{{text}}
+    <form action="/delete" method="post">
+        <button type="submit">Delete</button>
+        <input type="hidden" name="id" value="{{id}}"/>
+    </form></li>
+</ol>
+{{/messages}}
+{{/username}}
+
+</body>
+</html>
